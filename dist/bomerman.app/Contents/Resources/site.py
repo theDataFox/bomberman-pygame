@@ -39,7 +39,7 @@ for dir in sys.path:
     # if they only differ in case); turn relative paths into absolute
     # paths.
     dir, dircase = makepath(dir)
-    if not dircase in _dirs_in_sys_path:
+    if dircase not in _dirs_in_sys_path:
         L.append(dir)
         _dirs_in_sys_path[dircase] = 1
 sys.path[:] = L
@@ -63,7 +63,7 @@ def addsitedir(sitedir):
     else:
         reset = 0
     sitedir, sitedircase = makepath(sitedir)
-    if not sitedircase in _dirs_in_sys_path:
+    if sitedircase not in _dirs_in_sys_path:
         sys.path.append(sitedir)        # Add path component
     try:
         names = os.listdir(sitedir)

@@ -54,9 +54,9 @@ class Titlescreen():
 							pygame.quit() # Exit clicked
 
 	def withinBoundary(self, x1, x2, y1, y2):
-		if pygame.mouse.get_pos()[0] >= x1 and pygame.mouse.get_pos()[0] <= x2 and pygame.mouse.get_pos()[1] >= y1 and pygame.mouse.get_pos()[1] <= y2:
-			return True
-		return False
+		return (pygame.mouse.get_pos()[0] >= x1 and pygame.mouse.get_pos()[0] <= x2
+		        and pygame.mouse.get_pos()[1] >= y1
+		        and pygame.mouse.get_pos()[1] <= y2)
 
 	def singlePlayer(self):
 		g = game.Game(self.c.SINGLE)

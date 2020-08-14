@@ -26,13 +26,11 @@ class Highscore:
 		self.screen = pygame.display.set_mode((self.c.WIDTH,self.c.HEIGHT))
 		self.clearBackground()
 
-		indx = 1
 		self.printText("Highscores",(375,40))
-		for score in self.scores:
+		for indx, score in enumerate(self.scores, start=1):
 			self.printText("%d) %d" % (indx,score),(40,75+25*indx))
-			indx += 1
 		pygame.display.flip()
-		
+
 		exit = False
 		while not exit:
 			for event in pygame.event.get():
