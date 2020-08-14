@@ -26,8 +26,7 @@ class Player(character.Character):
 	def deployBomb(self):
 		if self.currentBomb > 0:
 			self.currentBomb -= 1
-			b = bomb.Bomb(self)
-			return b
+			return bomb.Bomb(self)
 		return None
 
 	def gainPower(self,power):

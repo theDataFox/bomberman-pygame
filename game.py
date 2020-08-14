@@ -209,7 +209,7 @@ class Game:
 
 	def initEnemies(self):
 		# generates 5 enemies
-		for i in range(0,5):
+		for _ in range(5):
 			while True:
 				x = random.randint(6,self.field.width-2)*40			# randint(1,X) changed to 6 so enemies do not start near player
 				y = random.randint(6,self.field.height-2)*40
@@ -230,7 +230,7 @@ class Game:
 
 		while self.gameIsActive:
 			clock.tick(self.c.FPS)
-			
+
 			self.checkPlayerEnemyCollision()
 			self.checkWinConditions()
 
@@ -247,7 +247,7 @@ class Game:
 
 			if cyclicCounter%5 == 1:
 				self.clearExplosion()
-				
+
 			for event in pygame.event.get():
 				if event.type == pygame.QUIT:
 					self.forceQuit()
@@ -261,7 +261,7 @@ class Game:
 						self.deployBomb(self.user)
 					elif k == pygame.K_ESCAPE:
 						self.fQuit()
-					elif k == pygame.K_UP or k == pygame.K_DOWN or k == pygame.K_LEFT or k == pygame.K_RIGHT:
+					elif k in [pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT]:
 						if self.mode == self.c.MULTI:
 							self.sendingData = ["update","movement",k,self.id]
 
@@ -332,7 +332,7 @@ class Game:
 			self.blit(explosion,bomb.position)
 
 	def triggerBombChain(self, bomb):
-		if bomb == None:
+		if bomb is None:
 			return
 		else:
 			bomb.triggered = True	
@@ -420,9 +420,8 @@ class Game:
 				self.resetPlayerPosition(self.user,True)
 	
 	def checkWinConditions(self):
-		if self.mode == self.c.SINGLE:
-			if len(self.enemies) == 0:
-				self.victory()
+		if self.mode == self.c.SINGLE and len(self.enemies) == 0:
+			self.victory()
 
 	def gameover(self, player):
 		if self.mode == self.c.SINGLE:
